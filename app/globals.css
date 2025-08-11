@@ -1,26 +1,546 @@
-@import "tailwindcss";
+/* Оптимизированные Tailwind импорты */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Кастомные CSS анимации для улучшения производительности */
+@layer utilities {
+  /* Анимация появления с плавным масштабированием */
+  .animate-scale-in {
+    animation: scaleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* Анимация появления справа */
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Анимация пульсации */
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+    }
+  }
+  
+  /* Анимация появления с задержкой */
+  .animate-stagger {
+    animation: stagger 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes stagger {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Анимация вращения иконки */
+  .animate-rotate-in {
+    animation: rotateIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-180deg);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+  }
+  
+  /* Анимация появления с размытием */
+  .animate-blur-in {
+    animation: blurIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes blurIn {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+  
+  /* Анимация появления с отскоком */
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Анимация появления с волной */
+  .animate-wave-in {
+    animation: waveIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes waveIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.8);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-10px) scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Анимация тряски для ошибок */
+  .animate-shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+  
+  /* Анимация появления с размытием */
+  .animate-blur-in {
+    animation: blurIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes blurIn {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+  
+  /* Анимация появления с отскоком */
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Анимация появления с вращением */
+  .animate-spin-in {
+    animation: spinIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes spinIn {
+    from {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+  
+  /* Анимация появления с растяжением */
+  .animate-stretch-in {
+    animation: stretchIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes stretchIn {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+  
+  /* Анимация появления с падением */
+  .animate-drop-in {
+    animation: dropIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes dropIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100px) rotate(-10deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
+  /* Анимация появления с всплытием */
+  .animate-float-in {
+    animation: floatIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes floatIn {
+    from {
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Анимация появления с зумом */
+  .animate-zoom-in {
+    animation: zoomIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Анимация появления с слайдом */
+  .animate-slide-in {
+    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Улучшения для производительности анимаций */
+@layer base {
+  * {
+    /* Оптимизация для анимаций */
+    will-change: auto;
+  }
+  
+  /* Элементы с анимациями */
+  .animate-element {
+    will-change: transform, opacity;
+  }
+  
+  /* Плавные переходы для интерактивных элементов */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Оптимизация для GPU */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* Кастомные стили для AI чата */
+@layer components {
+  /* Стили для анимированных кнопок */
+  .ai-button {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+  }
+  
+  /* Стили для анимированных карточек */
+  .ai-card {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:shadow-blue-500/10;
+    @apply transform hover:-translate-y-1;
+  }
+  
+  /* Стили для анимированных иконок */
+  .ai-icon {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-110 hover:rotate-12;
+  }
+  
+  /* Стили для анимированных сообщений */
+  .ai-message {
+    @apply transition-all duration-300 ease-out;
+    @apply transform hover:scale-[1.02];
+  }
+  
+  /* Стили для анимированного загрузчика */
+  .ai-loader {
+    @apply animate-spin;
+    @apply border-2 border-blue-500 border-t-transparent;
+    @apply rounded-full;
+  }
+  
+  /* Стили для анимированного фона */
+  .ai-backdrop {
+    @apply backdrop-blur-sm;
+    @apply bg-background/80;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  /* Универсальные анимированные стили для всего проекта */
+  .animated-button {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+  }
+  
+  .animated-card {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:shadow-blue-500/10;
+    @apply transform hover:-translate-y-1;
+  }
+  
+  .animated-icon {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-110 hover:rotate-12;
+  }
+  
+  .animated-input {
+    @apply transition-all duration-200 ease-out;
+    @apply focus:ring-2 focus:ring-blue-500/50;
+    @apply focus:border-blue-500;
+  }
+  
+  .animated-link {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105;
+    @apply hover:text-blue-600;
+  }
+  
+  .animated-badge {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105;
+    @apply hover:shadow-md;
+  }
+  
+  .animated-toggle {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105;
+  }
+  
+  .animated-progress {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .animated-list-item {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-[1.02];
+    @apply hover:shadow-md;
+  }
+  
+  .animated-modal {
+    @apply transition-all duration-300 ease-out;
+    @apply backdrop-blur-sm;
+  }
+  
+  .animated-dropdown {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105;
+  }
+  
+  .animated-tooltip {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-105;
+  }
+  
+  .animated-notification {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:scale-[1.02];
+  }
+  
+  .animated-loading {
+    @apply transition-all duration-200 ease-out;
+    @apply animate-pulse;
+  }
+  
+  .animated-success {
+    @apply transition-all duration-300 ease-out;
+    @apply animate-bounce;
+  }
+  
+  .animated-error {
+    @apply transition-all duration-300 ease-out;
+    @apply animate-shake;
+  }
+  
+  .animated-warning {
+    @apply transition-all duration-300 ease-out;
+    @apply animate-pulse;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+/* Стили для ползунков */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 0;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background: #3b82f6;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background: #3b82f6;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

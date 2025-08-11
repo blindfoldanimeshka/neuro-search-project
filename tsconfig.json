@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,10 +22,48 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./app/*"
+      ],
+      "@/src/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "next-env.d.ts",
+    "tsconfig.json",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "src/**",
+    "rag-setup/**",
+    "logs/**",
+    "test-logs/**",
+    "scripts/**",
+    "public/**",
+    "app/api/ai-product-search/**",
+    "app/api/ai-search/**",
+    "app/api/enhanced-scrape/**",
+    "app/api/index-management/**",
+    "app/api/scrape/**",
+    "app/api/search-index/**",
+    "app/api/search/**",
+    "app/components/AnimatedElements.tsx",
+    "app/components/ProductSearchResults.tsx",
+    "app/components/index.ts",
+    "app/components/product/**",
+    "app/components/search/**",
+    "src/features/**",
+    "app/components/GlobalAnimationDemo.tsx",
+    "app/api/ai/route.ts"
+  ]
 }
